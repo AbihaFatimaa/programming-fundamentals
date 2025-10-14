@@ -1,3 +1,10 @@
+git clone url
+
+git init
+
+
+
+
 git status
 
 git add .
@@ -5,3 +12,7 @@ git add .
 git commit -m "your message here"
 
 git push
+
+git pull
+
+git log
