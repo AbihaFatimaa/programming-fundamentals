@@ -1,0 +1,4 @@
+Code, Title, Credit Hours, Semester, Status
+hg-001,islamiat,2,1,active
+pf-122,programming fundamentals,3,1,active
+ic-33,pakistan studies,2,1,active
