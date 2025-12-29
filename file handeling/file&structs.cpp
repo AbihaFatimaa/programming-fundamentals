@@ -21,7 +21,7 @@ int main(){
 	cin.ignore();
 	//file.write((char*)&s, sizeof(s));  
 
-	file<<"name: "<<s.name<<endl<<"roll: "<<s.roll<<endl<<"marks: "<<s.marks<<endl;
+ 	file<<"name: "<<s.name<<endl<<"roll: "<<s.roll<<endl<<"marks: "<<s.marks<<endl;
 	file<<endl;
 	}
 	file.close();
