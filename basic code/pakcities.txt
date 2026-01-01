@@ -1,6 +1,6 @@
 abot abad           34.1558 73.2194
 chitral             35.8394 71.7800
-kohat               35.1538 76.3460
+jalal abad          35.1538 76.3460
 mingora             34.7795 72.3626
 mardan              34.1982 72.0444
 nowshera            34.0066 71.9998

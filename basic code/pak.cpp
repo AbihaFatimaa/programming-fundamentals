@@ -1,40 +1,58 @@
 #include <iostream>
+#include <iomanip>
 #include <fstream>
+#include <string>
 #include <cstring>
+
 using namespace std;
 
-struct city {
-    char name[21];
-    double lat;
-    double lon;
-};
+int main()
+{
+	fstream db;
+	db.open("pakcities.txt", ios::ate | ios::in | ios::out);
+    long filesize = db.tellg();
+	cout << "File size is: " << filesize << endl;
+    
+    db.seekg(0);
+    char record[1000];
+    db.getline(record, 1000);
+    long recordsize = db.gcount()+1; // 1 is added for \n
+	cout << "Record size is: " << recordsize << endl;
+	cout << "Record count is: " << filesize/recordsize << endl;
+    
+	cout << "Last three records are: " << endl;
+    db.seekg(-recordsize*3, ios::end);
+    db.getline(record, 1000);
+    cout << record << endl;
+    db.getline(record, 1000);
+    cout << record << endl;
+    db.getline(record, 1000);
+    cout << record << endl;
 
-int main() {
-    ofstream out("pakcities.bin", ios::binary);
+	cout << "City prior to mangora is: " << endl;
+	char cityname[21];
+    int recno = 0;
+    db.seekg(0);
+    db.getline(cityname, 21);
+    db.clear();
+    while(db.gcount() > 0)
+    {
+        if (strcmp(cityname, "mingora             ") == 0)
+        {
+            cout << "mingora\'s record no is " << recno << endl;
+            recno--;
+            db.seekp(recno*(recordsize));
+            db << left << setw(20) << "jalal abad";
+            db.seekg((recno+2)*(recordsize));
+            //break;
+        }
+        recno++;
+        db.ignore(10000, '\n');
+        db.getline(cityname, 21);
+        db.clear();
+    }
 
-    city c;
-    memset(&c, 0, sizeof(c));
-
-    // Example record 1
-    strncpy(c.name, "Islamabad", 20);
-    c.lat = 33.6844;
-    c.lon = 73.0479;
-    out.write((char*)&c, sizeof(c));
-
-    // Example record 2
-    memset(&c, 0, sizeof(c));
-    strncpy(c.name, "Mingora", 20);
-    c.lat = 34.7717;
-    c.lon = 72.3600;
-    out.write((char*)&c, sizeof(c));
-
-    // Example record 3
-    memset(&c, 0, sizeof(c));
-    strncpy(c.name, "Peshawar", 20);
-    c.lat = 34.0151;
-    c.lon = 71.5249;
-    out.write((char*)&c, sizeof(c));
-
-    out.close();
-    return 0;
+    db.close();
+	cout << endl;
+	return 0;
 }
